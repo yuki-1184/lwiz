@@ -31,7 +31,7 @@ jobs:
       - name: Run prettier for changed files
         # if: env.CHANGED_FILES != ''
         # run: yarn prettier --check --list-diff ${{ env.CHANGED_FILES }}
-        run: yarn prettier --check --ignore-path .gitignore 'src/'
+        run: yarn format:check
 
       - name: ESlint
         run: yarn lint --cache --quiet
@@ -40,4 +40,4 @@ jobs:
         run: yarn tsc --noEmit
 
       - name: Build Check
-        run: CI=false yarn build
+        run: yarn build
