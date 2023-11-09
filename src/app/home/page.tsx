@@ -1,14 +1,15 @@
 'use client';
 
 import styled from 'styled-components';
+import { Flex } from '@radix-ui/themes';
 
 type Props = {};
 
 const Home = () => {
   return (
-    <HelloWorld>
+    <Flex>
       <p>hello world</p>
-    </HelloWorld>
+    </Flex>
   );
 };
 
