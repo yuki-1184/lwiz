@@ -1,4 +1,6 @@
-import { styled } from '@stitches/react';
+'use client';
+import { Button } from '../../../components/ui/button';
+import { Container, Flex, Heading, Text, Card, Badge } from '@radix-ui/themes';
 
 type Props = {
   name: string;
@@ -6,46 +8,30 @@ type Props = {
 
 export const CustomHeader = ({ name }: Props) => {
   return (
-    <StyledNavbar>
-      <div className='text-xl font-bold'>MyApp</div>
-      <StyledNavList>
-        <StyledNavItem>
-          <a href='/' className='text-gray-600 hover:text-gray-800'>
-            Home
-          </a>
-        </StyledNavItem>
-        <StyledNavItem>
-          <a href='/about' className='text-gray-600 hover:text-gray-800'>
-            About
-          </a>
-        </StyledNavItem>
-        <StyledNavItem>
-          <a href='/contact' className='text-gray-600 hover:text-gray-800'>
-            Contact
-          </a>
-        </StyledNavItem>
-      </StyledNavList>
-      Expected 1 arguments, but got 2.
-    </StyledNavbar>
+    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+      <Container size={'1'}>
+        <Flex direction={'column'} pb={'4'}>
+          <Heading>Coding Issue Tracker</Heading>
+          <Text color='gray'>Here you can find the issue relevant to your certain project. </Text>
+        </Flex>
+
+        <Flex gap={'4'} direction={'column'}>
+          <Card>
+            <Flex gap={'1'} direction={'column'}>
+              <Text>Issue #24 - Button is Wrong Color</Text>
+              <Flex gap={'2'}>
+                <Badge color='orange'>Devops</Badge>
+                <Badge color='blue'>UI</Badge>
+              </Flex>
+              <Text>
+                This is a very serious issue. On a dashboard that only 5 users use, there is a
+                button that is a wrong shade of green. This is mission critical.
+              </Text>
+            </Flex>
+            <Button>hello world</Button>
+          </Card>
+        </Flex>
+      </Container>
+    </main>
   );
 };
-
-const StyledNavbar = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '1rem',
-  backgroundColor: '#fff',
-  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-});
-
-const StyledNavList = styled('ul', {
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
-  display: 'flex',
-  alignItems: 'center',
-  gap: '1rem',
-});
-
-const StyledNavItem = styled('li', {});
