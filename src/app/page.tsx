@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import { Container, Flex, Heading, Text, Card, Badge } from '@radix-ui/themes';
 export default function Home() {
@@ -24,7 +22,7 @@ export default function Home() {
                 button that is a wrong shade of green. This is mission critical.
               </Text>
             </Flex>
-            <Button variant={'outline'}>hello world</Button>
+            <Button>hello world</Button>
           </Card>
         </Flex>
       </Container>

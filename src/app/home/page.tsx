@@ -1,5 +1,3 @@
-'use client';
-
 import { Screen } from '@/screens/home';
 
 type Props = {};
