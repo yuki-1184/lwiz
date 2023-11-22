@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import { Inter as FontSans } from 'next/font/google';
-// import '@radix-ui/themes/styles.css';
 import { Theme, ThemePanel } from '@radix-ui/themes';
 import { cn } from '../lib/utils';
 

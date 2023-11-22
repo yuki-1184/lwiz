@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Container, Flex, Heading, Text, Card, Badge } from '@radix-ui/themes';
 
 type Props = {
