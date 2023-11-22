@@ -1,23 +1,11 @@
 'use client';
 
-import styled from 'styled-components';
-import { Flex } from '@radix-ui/themes';
+import { Screen } from '@/screens/home';
 
 type Props = {};
 
 const Home = () => {
-  return (
-    <Flex>
-      <p>hello world</p>
-    </Flex>
-  );
+  return <Screen />;
 };
-
-const HelloWorld = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  justify-content: center;
-`;
 
 export default Home;
