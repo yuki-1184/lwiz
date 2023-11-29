@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import { Flex, Text } from '@radix-ui/themes';
 import { GearIcon } from '@radix-ui/react-icons';
@@ -20,7 +21,7 @@ export const CustomHeader = ({ name }: Props) => {
 
   return (
     <header className='py-2 border-b border-border backdrop-blur-sm bg-secondary'>
-      <div className='container'>
+      <div className='px-8'>
         <Flex direction={'row'} justify={'between'} align={'center'}>
           <Text size={'4'}>ダッシュボード</Text>
           <Flex direction={'row'} gap={'4'} align={'center'}>
