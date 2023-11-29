@@ -15,7 +15,7 @@ const config: StorybookConfig = {
         },
       },
     },
-    '@storybook/addon-themes'
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/nextjs',
@@ -31,6 +31,7 @@ const config: StorybookConfig = {
 
     config.resolve.alias['@/components'] = path.resolve(__dirname, '../src/components');
     config.resolve.alias['@/lib'] = path.resolve(__dirname, '../src/lib');
+    config.resolve.alias['@/usecases'] = path.resolve(__dirname, '../src/usecases');
 
     return config;
   },

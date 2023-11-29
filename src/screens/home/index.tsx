@@ -1,10 +1,11 @@
-import { CustomHeader } from '@/features/CustomHeader';
-import SidebarPresentation from '@/features/Sidebar';
+'use client';
+
+import TimeStamp from '@/features/TimeStamp';
 
 export const Screen: React.FC = () => {
   return (
     <>
-      <p>hello world</p>
+      <TimeStamp />
     </>
   );
 };
