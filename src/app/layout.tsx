@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange
         >
           <Theme>
-            <div className='flex'>
+            <div className='relative z-0 flex h-full w-full overflow-hidden'>
               <Sidebar />
               <div className='w-screen'>
                 <CustomHeader name={'satoki'} />
