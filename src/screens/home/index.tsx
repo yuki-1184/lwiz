@@ -1,11 +1,10 @@
-import { CustomHeader } from '@/features/CustomHeader/presentations';
+import { CustomHeader } from '@/features/CustomHeader';
 import SidebarPresentation from '@/features/Sidebar';
 
 export const Screen: React.FC = () => {
   return (
     <>
-      <CustomHeader name='Satoki' />
-      <SidebarPresentation></SidebarPresentation>
+      <p>hello world</p>
     </>
   );
 };

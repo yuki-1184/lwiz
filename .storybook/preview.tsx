@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 
+import { withThemeByClassName } from '@storybook/addon-themes';
+
 import '../src/styles/globals.css';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
@@ -20,11 +22,16 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Theme>
+      <Theme appearance='light'>
         <Story />
       </Theme>
     ),
+    withThemeByClassName({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'light',
+    }),
   ],
 };
-
-export default preview;

@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import { Inter as FontSans } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
 import { Theme, ThemePanel } from '@radix-ui/themes';
 import { cn } from '../lib/utils';
+import { CustomHeader } from '@/features/CustomHeader';
+import Sidebar from '@/features/Sidebar';
 
 export const fontSans = FontSans({
   subsets: ['latin'],
@@ -18,10 +21,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <Theme appearance='light'>
-          {children}
-          {/* <ThemePanel /> */}
-        </Theme>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='light'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Theme>
+            <div className='flex'>
+              <Sidebar />
+              <div className='w-screen'>
+                <CustomHeader name={'satoki'} />
+                <div className='container'>{children}</div>
+              </div>
+            </div>
+            {/* <ThemePanel /> */}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );

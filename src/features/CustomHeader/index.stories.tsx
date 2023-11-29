@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CustomHeader } from './presentations';
+import { CustomHeader } from '.';
 
 export default {
   component: CustomHeader,
