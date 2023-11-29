@@ -5,7 +5,9 @@ import TimeStamp from '@/features/TimeStamp';
 export const Screen: React.FC = () => {
   return (
     <>
-      <TimeStamp />
+      <div className='my-20'>
+        <TimeStamp />
+      </div>
     </>
   );
 };

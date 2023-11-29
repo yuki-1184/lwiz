@@ -19,7 +19,7 @@ const getMenuItemIcon = (item: string, size: number) => {
 
 const Sidebar: React.FC = () => {
   return (
-    <div className='flex flex-col h-screen p-3 shadow w-60 bg-foreground text-primary-foreground border-r border-border sticky top-0'>
+    <div className='flex flex-col h-screen p-3 shadow w-64 bg-foreground text-primary-foreground border-r border-border sticky top-0'>
       <div className='space-y-3'>
         <div className='flex items-center'>
           <h1 className='text-xl font-bold'>Lwiz</h1>

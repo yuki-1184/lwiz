@@ -7246,13 +7246,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daysjs@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "daysjs@npm:1.0.2"
-  checksum: 726db0d3cded870de833778fec4b7f616d8013a8197616e7f5bbb66a481d0b3d37f7503f468051fd6d83c6ac24a0a8608a14983e5ceb7bf9a3576a065291ba0d
-  languageName: node
-  linkType: hard
-
 "debug@npm:2.6.9, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -10987,7 +10980,6 @@ __metadata:
     class-variance-authority: ^0.7.0
     clsx: ^2.0.0
     dayjs: ^1.11.10
-    daysjs: ^1.0.2
     eslint: ^8
     eslint-config-next: 14.0.1
     eslint-plugin-storybook: ^0.6.15
