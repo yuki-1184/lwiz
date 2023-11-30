@@ -1853,6 +1853,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fullcalendar/core@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/core@npm:6.1.10"
+  dependencies:
+    preact: ~10.12.1
+  checksum: 88f0feb447cb5dd2065bd0a25acd1f715a3aa152d04ee26c5db682e4c3586df5464e2ccfd6479aebf53174548411f29f3778b4fa01093f49f2962861a317d4f6
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/daygrid@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/daygrid@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+  checksum: 4b125e57fa579e62ab7881a1c2161f495ed44a438666e532b043690980afce3b64e2c497f5f3b36b0fbc032e82e2cfe9eadbafbc11d7601f9c19afd4e71d9990
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/interaction@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/interaction@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+  checksum: b5bdfaa6504c1c490198dd1de38834849e05a2adb2adcda2a2733b38e7bcf7f3a933dc7a84895a77f016324906b7b751d52f6989ee342983abce898b433ee770
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/react@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/react@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+    react: ^16.7.0 || ^17 || ^18
+    react-dom: ^16.7.0 || ^17 || ^18
+  checksum: 888c9a6eeb2a34aa64c057f4c4b2fab661dca662fa013e9ad7263d03a54d5f6f5b382c8faf87836322bed9d99c2f63c9c779a0a811e4ae6090cd3a5e1aeb4dc9
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.13":
   version: 0.11.13
   resolution: "@humanwhocodes/config-array@npm:0.11.13"
@@ -10956,6 +10994,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "my-app@workspace:."
   dependencies:
+    "@fullcalendar/core": ^6.1.10
+    "@fullcalendar/daygrid": ^6.1.10
+    "@fullcalendar/interaction": ^6.1.10
+    "@fullcalendar/react": ^6.1.10
     "@radix-ui/react-avatar": ^1.0.4
     "@radix-ui/react-dialog": ^1.0.5
     "@radix-ui/react-dropdown-menu": ^2.0.6
@@ -12049,6 +12091,13 @@ __metadata:
     picocolors: ^0.2.1
     source-map: ^0.6.1
   checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
+  languageName: node
+  linkType: hard
+
+"preact@npm:~10.12.1":
+  version: 10.12.1
+  resolution: "preact@npm:10.12.1"
+  checksum: 0de99f477563ab7f94a0f964952ad216375973c0dcd9eb49881f8eb5effc5ed6948da062548c87d5bb0d82f1a1e516b649020e760eab3a0503dfdd8e64d34a26
   languageName: node
   linkType: hard
 
