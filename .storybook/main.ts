@@ -32,6 +32,7 @@ const config: StorybookConfig = {
     config.resolve.alias['@/components'] = path.resolve(__dirname, '../src/components');
     config.resolve.alias['@/lib'] = path.resolve(__dirname, '../src/lib');
     config.resolve.alias['@/usecases'] = path.resolve(__dirname, '../src/usecases');
+    config.resolve.alias['@/context'] = path.resolve(__dirname, '../src/context');
 
     return config;
   },
