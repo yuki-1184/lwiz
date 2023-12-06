@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   MdCalendarMonth,
   MdOutlineDashboardCustomize,
   MdOutlineTimeline,
   MdOutlinePersonOutline,
 } from 'react-icons/md';
-import { FaGithub } from 'react-icons/fa';
-import { Box, Flex } from '@radix-ui/themes';
+
 const MENU_ITEMS = ['ダッシュボード', 'タイムライン', 'シフト', 'マイページ'];
 
 const getMenuItemIcon = (item: string, size: number) => {
@@ -30,14 +28,39 @@ const Sidebar: React.FC = () => {
           </div>
           <div className='flex-1'>
             <ul className='py-4 space-y-1 text-sm'>
-              {MENU_ITEMS.map((item, index) => (
+              <li className='rounded-sm'>
+                <Link href='/' className='flex items-center py-3 px-2 space-x-3 rounded-md'>
+                  {getMenuItemIcon('ダッシュボード', 24)}
+                  <span className='font-bold'>ダッシュボード</span>
+                </Link>
+              </li>
+              <li className='rounded-sm'>
+                <Link href='/home' className='flex items-center py-3 px-2 space-x-3 rounded-md'>
+                  {getMenuItemIcon('タイムライン', 24)}
+                  <span className='font-bold'>タイムライン（ホーム）</span>
+                </Link>
+              </li>
+              <li className='rounded-sm'>
+                <Link href='/shift' className='flex items-center py-3 px-2 space-x-3 rounded-md'>
+                  {getMenuItemIcon('シフト', 24)}
+                  <span className='font-bold'>シフト</span>
+                </Link>
+              </li>
+              <li className='rounded-sm'>
+                <Link href='/mypage' className='flex items-center py-3 px-2 space-x-3 rounded-md'>
+                  {getMenuItemIcon('マイページ', 24)}
+                  <span className='font-bold'>マイページ</span>
+                </Link>
+              </li>
+
+              {/* {MENU_ITEMS.map((item, index) => (
                 <li className='rounded-sm' key={index}>
                   <Link href='/' className='flex items-center py-3 px-2 space-x-3 rounded-md'>
                     {getMenuItemIcon(item, 24)}
                     <span className='font-bold'>{item}</span>
                   </Link>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
         </div>
