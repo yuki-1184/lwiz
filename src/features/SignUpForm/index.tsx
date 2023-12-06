@@ -25,7 +25,7 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Enter a password.' }),
 });
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,12 +43,12 @@ export const SignInForm = () => {
 
     // success
     console.log(result);
-    return router.push('/home');
+    return router.push('/signin');
   };
 
   return (
     <>
-      <p>ログイン</p>
+      <p>新規登録</p>
       <div className='flex w-full min-h-[350px] justify-center p-10 items-center'>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-2/3 space-y-6'>
@@ -79,7 +79,7 @@ export const SignInForm = () => {
               )}
             />
             <Button type='submit' className='mt-2'>
-              Sign In
+              Sign Up
             </Button>
           </form>
         </Form>
