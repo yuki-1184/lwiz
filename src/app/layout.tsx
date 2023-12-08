@@ -8,6 +8,7 @@ import { CustomHeader } from '@/features/CustomHeader';
 import Sidebar from '@/features/Sidebar';
 import { AuthContextProvider } from '@/context/AuthContext';
 import { ReactNode } from 'react';
+import { Toaster } from '@/components/ui/toaster';
 
 export const fontSans = FontSans({
   subsets: ['latin'],
@@ -21,8 +22,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang='en'>
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+    <html lang='en' suppressHydrationWarning={true}>
+      <body
+        className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}
+        suppressHydrationWarning={true}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='light'
@@ -36,6 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <div className='w-screen'>
                   <CustomHeader name={'satoki'} />
                   <div className='container'>{children}</div>
+                  <Toaster />
                 </div>
               </div>
             </AuthContextProvider>
