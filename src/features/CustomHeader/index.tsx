@@ -20,15 +20,16 @@ export const CustomHeader = ({ name }: Props) => {
   const { toast } = useToast();
 
   const handleSignOut = async () => {
-    const { result, error } = await logOut();
-
-    if (error) return console.log(error);
-
-    toast({
-      variant: 'success',
-      title: 'ログアウトしました。',
-    });
-    return router.push('/signin');
+    try {
+      await logOut();
+      toast({
+        variant: 'success',
+        title: 'ログアウトしました。',
+      });
+      router.push('/signin');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGearIconClick = () => {

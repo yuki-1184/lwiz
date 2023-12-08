@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -16,34 +17,43 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import signIn from '@/lib/firebase/auth/signin';
 import { useRouter } from 'next/navigation';
+import { authSchema } from '@/lib/validations/auth';
+import { FirebaseError } from 'firebase/app';
+import { useToast } from '@/components/ui/use-toast';
+import { PasswordInput } from '@/components/password-input';
+import { handleFirebaseAuthError } from '@/lib/firebase/firebaseErrors';
+import { Loader2 } from 'lucide-react';
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'This field has to be filled.' })
-    .email('This is not a valid email.'),
-  password: z.string().min(1, { message: 'Enter a password.' }),
-});
+type Inputs = z.infer<typeof authSchema>;
 
 export const SignInForm = () => {
   const router = useRouter();
+  const [isPending, startTransition] = React.useTransition();
+  const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<Inputs>({
+    resolver: zodResolver(authSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { result, error } = await signIn(values.email, values.password);
-
-    if (error) return console.log(error);
-
-    // success
-    console.log(result);
-    return router.push('/home');
+  const onSubmit = async (values: z.infer<typeof authSchema>) => {
+    startTransition(async () => {
+      try {
+        const userCredential = await signIn(values.email, values.password);
+        router.push('/home');
+      } catch (error) {
+        if (error instanceof FirebaseError) {
+          const errorMessage = handleFirebaseAuthError(error);
+          toast({ description: errorMessage });
+        } else {
+          const unknownError = '申し訳ありませんが、何か問題が発生しました。再度お試しください。';
+          toast({ description: unknownError });
+        }
+      }
+    });
   };
 
   return (
@@ -57,7 +67,7 @@ export const SignInForm = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
                     <Input placeholder='example@gmail.com' {...field} />
                   </FormControl>
@@ -70,16 +80,18 @@ export const SignInForm = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>パスワード</FormLabel>
                   <FormControl>
-                    <Input type='password' placeholder='password' {...field} />
+                    <PasswordInput placeholder='**********' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type='submit' className='mt-2'>
-              Sign In
+            <Button type='submit' className='w-full' disabled={isPending}>
+              {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' aria-hidden='true' />}
+              サインイン
+              <span className='sr-only'>サインイン</span>
             </Button>
           </form>
         </Form>
