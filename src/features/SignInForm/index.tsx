@@ -23,6 +23,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { PasswordInput } from '@/components/password-input';
 import { handleFirebaseAuthError } from '@/lib/firebase/firebaseErrors';
 import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 type Inputs = z.infer<typeof authSchema>;
 
@@ -39,7 +40,7 @@ export const SignInForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof authSchema>) => {
+  const onSubmit = (values: z.infer<typeof authSchema>) => {
     startTransition(async () => {
       try {
         const userCredential = await signIn(values.email, values.password);
@@ -58,44 +59,51 @@ export const SignInForm = () => {
 
   return (
     <>
-      <p>ログイン</p>
-      <div className='flex w-full min-h-[350px] justify-center p-10 items-center'>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='w-2/3 space-y-6'>
-            <FormField
-              control={form.control}
-              name='email'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>メールアドレス</FormLabel>
-                  <FormControl>
-                    <Input placeholder='example@gmail.com' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>パスワード</FormLabel>
-                  <FormControl>
-                    <PasswordInput placeholder='**********' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type='submit' className='w-full' disabled={isPending}>
-              {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' aria-hidden='true' />}
-              サインイン
-              <span className='sr-only'>サインイン</span>
-            </Button>
-          </form>
-        </Form>
-      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+          <FormField
+            control={form.control}
+            name='email'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>メールアドレス</FormLabel>
+                <FormControl>
+                  <Input placeholder='example@gmail.com' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>パスワード</FormLabel>
+                <FormControl>
+                  <PasswordInput placeholder='**********' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div>
+            <Link
+              aria-label='Reset Password'
+              href={'/signin/reset-password'}
+              // TODO: text color -> globals.css
+              className='text-sm text-blue-600 underline-offset-4 transition-colors hover:underline mt-6'
+            >
+              Forgot Password?
+            </Link>
+          </div>
+          <Button type='submit' className='w-full' disabled={isPending}>
+            {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' aria-hidden='true' />}
+            サインイン
+            <span className='sr-only'>サインイン</span>
+          </Button>
+        </form>
+      </Form>
     </>
   );
 };

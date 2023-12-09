@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { checkEmailSchema } from '@/lib/validations/auth';
 import {
   Form,
   FormControl,
@@ -15,36 +16,40 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
-import signUp from '@/lib/firebase/auth/signup';
-import { authSchema } from '@/lib/validations/auth';
+import { useRouter } from 'next/router';
 import { useToast } from '@/components/ui/use-toast';
 import { Loader2 } from 'lucide-react';
-import { PasswordInput } from '@/components/password-input';
+import sendResetEmailCode from '@/lib/firebase/auth/resetpassword';
+import { FirebaseError } from 'firebase/app';
+import { handleFirebaseAuthError } from '@/lib/firebase/firebaseErrors';
 
-type Inputs = z.infer<typeof authSchema>;
+type Inputs = z.infer<typeof checkEmailSchema>;
 
-export const SignUpForm = () => {
-  const router = useRouter();
+export const ResetPasswordForm = () => {
   const [isPending, startTransition] = React.useTransition();
   const { toast } = useToast();
 
   const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(checkEmailSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const onSubmit = (values: z.infer<typeof authSchema>) => {
+  const onSubmit = (values: z.infer<typeof checkEmailSchema>) => {
     startTransition(async () => {
       try {
-        await signUp(values.email, values.password);
-        router.push('/home');
+        await sendResetEmailCode(values.email);
+        toast({
+          variant: 'success',
+          title: 'メールを確認してください。',
+          description: '6桁の確認コードを送信しました。',
+        });
       } catch (error) {
-        const unknownError = '申し訳ありませんが、何か問題が発生しました。再度お試しください。';
-        toast({ description: unknownError });
+        if (error instanceof FirebaseError) {
+          const errorMessage = handleFirebaseAuthError(error);
+          toast({ description: errorMessage });
+        }
       }
     });
   };
@@ -66,23 +71,10 @@ export const SignUpForm = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>パスワード</FormLabel>
-                <FormControl>
-                  <PasswordInput placeholder='**********' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <Button type='submit' className='w-full' disabled={isPending}>
             {isPending && <Loader2 className='mr-2 h-4 w-4 animate-spin' aria-hidden='true' />}
-            サインアップ
-            <span className='sr-only'>サインイン</span>
+            サインイン
+            <span className='sr-only'>再設定メールを送信</span>
           </Button>
         </form>
       </Form>
