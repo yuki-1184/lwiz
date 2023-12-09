@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Flex, Text } from '@radix-ui/themes';
 import { GearIcon } from '@radix-ui/react-icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ModeToggle } from '@/components/custom/mode-toggle';
+import { ModeToggle } from '@/components/mode-toggle';
 import { useAuthContext } from '@/context/AuthContext';
 import logOut from '@/lib/firebase/auth/signout';
 import { useToast } from '@/components/ui/use-toast';
@@ -20,15 +20,16 @@ export const CustomHeader = ({ name }: Props) => {
   const { toast } = useToast();
 
   const handleSignOut = async () => {
-    const { result, error } = await logOut();
-
-    if (error) return console.log(error);
-
-    toast({
-      variant: 'success',
-      title: 'ログアウトしました。',
-    });
-    return router.push('/signin');
+    try {
+      await logOut();
+      toast({
+        variant: 'success',
+        title: 'ログアウトしました。',
+      });
+      router.push('/signin');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGearIconClick = () => {

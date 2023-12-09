@@ -1,5 +1,4 @@
 import React from 'react';
-import { SignInForm } from '@/features/SignInForm';
 import {
   Card,
   CardContent,
@@ -17,14 +16,16 @@ function Page() {
       <div className='container grid items-center pb-8 pt-6 md:py-8 max-w-2xl'>
         <Card>
           <CardHeader className='space-y-1 text-center'>
-            <CardTitle className='text-2xl mb-2'>サインイン</CardTitle>
-            <CardDescription>メールアドレスとパスワードを入力してください。</CardDescription>
+            <CardTitle className='text-2xl mb-2'>パスワード再設定メールを送る</CardTitle>
+            <CardDescription>
+              メールアドレスを入力してください。確認コードを送信します。{' '}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <SignInForm />
+            <ResetPasswordForm />
           </CardContent>
           <CardFooter>
-            アカウントをお持ちでない方は
+            すでにアカウントをお持ちの方は
             <Link arial-label='Sign In' href={'/signin'} className='text-blue-600 hover:underline'>
               こちら
             </Link>

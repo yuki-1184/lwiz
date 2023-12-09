@@ -11325,12 +11325,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.292.0":
-  version: 0.292.0
-  resolution: "lucide-react@npm:0.292.0"
+"lucide-react@npm:^0.294.0":
+  version: 0.294.0
+  resolution: "lucide-react@npm:0.294.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: 4e71cdc3a6ca91b090f1253d275e7ebf7644f9ad1121e94b3d0c1f4938b935c69309be5fb093ee24afd932733e8e2ef4e29baf3c8c7b89477683625bafd40726
+  checksum: d8e741603209a0e0400b2d71e676aff660251f7e078f8be72a2fbaf57876946a76571675230b7c0f7d27d8a9344d0c788dba14177d35f4ba911897282eaae22a
   languageName: node
   linkType: hard
 
@@ -11791,7 +11791,7 @@ __metadata:
     eslint-config-next: 14.0.1
     eslint-plugin-storybook: ^0.6.15
     firebase: ^10.7.0
-    lucide-react: ^0.292.0
+    lucide-react: ^0.294.0
     next: 14.0.1
     next-themes: ^0.2.1
     postcss: ^8
